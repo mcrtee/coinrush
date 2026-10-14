@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>Coin Rush Online</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🪙 Coin Rush <span>Online</span></h1>
+
+  <!-- ===== Меню ===== -->
+  <div id="menu" class="card">
+    <input id="name" type="text" maxlength="12" placeholder="Ваше имя" aria-label="Ваше имя">
+    <button id="createBtn">Создать комнату</button>
+    <div class="or">или</div>
+    <div class="row">
+      <input id="code" type="text" maxlength="4" placeholder="КОД" aria-label="Код комнаты">
+      <button id="joinBtn">Войти</button>
+    </div>
+    <p id="menuMsg" class="msg"></p>
+    <details>
+      <summary>Как играть</summary>
+      <ul>
+        <li><b>WASD / стрелки</b> — движение, <b>Пробел</b> — рывок</li>
+        <li>🟡 монета +1, 🌟 золото +5 (исчезает!)</li>
+        <li>💣 бомба −3 очка и оглушение</li>
+        <li>⚡ скорость, 🧲 магнит, 🛡 щит</li>
+        <li>Рывок в соперника отнимает у него 2 очка</li>
+        <li><b>Enter</b> — написать в чат</li>
+      </ul>
+    </details>
+  </div>
+
+  <!-- ===== Игра ===== -->
+  <div id="game" hidden>
+    <div id="topbar">
+      <span>Комната: <b id="roomLabel">----</b></span>
+      <button id="copyBtn" class="small">📋 Ссылка</button>
+      <button id="muteBtn" class="small">🔊</button>
+      <button id="leaveBtn" class="small">Выйти</button>
+    </div>
+
+    <div id="stage">
+      <canvas id="c" width="900" height="560"></canvas>
+
+      <!-- Лобби -->
+      <div id="lobby" class="overlay">
+        <h2>Лобби</h2>
+        <p>Код комнаты: <b id="lobbyCode" class="big">----</b></p>
+        <ul id="plist"></ul>
+        <div id="hostControls">
+          <label>Длительность раунда:
+            <select id="dur">
+              <option value="30">30 сек</option>
+              <option value="60" selected>60 сек</option>
+              <option value="90">90 сек</option>
+              <option value="120">120 сек</option>
+            </select>
+          </label>
+          <button id="startBtn">▶ Начать игру</button>
+        </div>
+        <p id="waitMsg">Ждём, пока хозяин комнаты начнёт игру…</p>
+        <p class="hint">Пока ждёте — бегайте и пробуйте рывок (Пробел)!</p>
+      </div>
+
+      <!-- Тач-управление -->
+      <div id="touch" hidden>
+        <div id="joy"><div id="knob"></div></div>
+        <button id="dashBtn">РЫВОК</button>
+      </div>
+    </div>
+
+    <div id="chat">
+      <div id="chatlog"></div>
+      <input id="chatinput" type="text" maxlength="80" placeholder="Enter — написать в чат…">
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
